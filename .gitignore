@@ -1,0 +1,10 @@
+# Ignore IntelliJ default output directory (usually not used with gradle, just in case)
+out
+
+# Ignore IntelliJ IDE folders
+.idea/workspace.xml
+.idea/uiDesigner.xml
+.idea/dictionaries
+.idea/findbugs-idea.xml
+.idea/junitgenerator-prj-settings.xml
+.idea/vcs.xml
