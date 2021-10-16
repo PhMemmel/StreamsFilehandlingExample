@@ -1,9 +1,11 @@
 package nqgy.sep.streams;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import nqgy.sep.streams.filehandler.FileExporter;
 import nqgy.sep.streams.filehandler.SimpleFileReader;
+import nqgy.sep.streams.utils.ExtractUtils;
 
 /** Starter class for the Stream and FileHandling project. */
 public class Main {
@@ -17,9 +19,18 @@ public class Main {
     Random random = new Random();
     SimpleFileReader fileParser = new SimpleFileReader("/Adressen.csv");
 
-    // for now it's just read in and dump it to outputfile without any changes
     List<String> addresses = fileParser.getLineList();
+    List<String> outputList = new ArrayList<>();
+    for (String line : addresses) {
+      // extract (in this order): surname, first name and phone number
+      outputList.add(
+          ExtractUtils.extractColumnFromCsvLine(line, 1)
+              + ";"
+              + ExtractUtils.extractColumnFromCsvLine(line, 0)
+              + ";"
+              + ExtractUtils.extractColumnFromCsvLine(line, 5));
+    }
     FileExporter fileExporter = new FileExporter();
-    fileExporter.dumpToFile(addresses);
+    fileExporter.dumpToFile(outputList);
   }
 }
