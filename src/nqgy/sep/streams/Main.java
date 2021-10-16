@@ -2,9 +2,8 @@ package nqgy.sep.streams;
 
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-import nqgy.sep.streams.filehandler.FileDumper;
-import nqgy.sep.streams.filehandler.FileParser;
+import nqgy.sep.streams.filehandler.FileExporter;
+import nqgy.sep.streams.filehandler.SimpleFileReader;
 
 /** Starter class for the Stream and FileHandling project. */
 public class Main {
@@ -16,16 +15,11 @@ public class Main {
    */
   public static void main(String[] args) {
     Random random = new Random();
-    FileParser fileParser = new FileParser();
-    System.out.print("Random word: ");
-    System.out.println(
-        fileParser.getWordSet().toArray()[random.nextInt(fileParser.getWordSet().size())]);
+    SimpleFileReader fileParser = new SimpleFileReader("/Adressen.csv");
 
-    List<String> wordsWithThreeChars =
-        fileParser.getWordSet().stream()
-            .filter(word -> word.length() < 3)
-            .collect(Collectors.toList());
-    FileDumper fileDumper = new FileDumper();
-    fileDumper.dumpToFile(wordsWithThreeChars);
+    // for now it's just read in and dump it to outputfile without any changes
+    List<String> addresses = fileParser.getLineList();
+    FileExporter fileExporter = new FileExporter();
+    fileExporter.dumpToFile(addresses);
   }
 }

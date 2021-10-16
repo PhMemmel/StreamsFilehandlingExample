@@ -6,32 +6,31 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
-/**
- * FileParser class. Parses a file and stores its content in a Set.
- */
-public class FileParser {
+/** FileParser class. Parses a file and stores its content in a Set. */
+public class SimpleFileReader {
 
-  // list origin: https://github.com/dwyl/english-words, for copyright information see the link
-  private static final String WORD_DATABASE_FILENAME = "../words_alpha.txt";
-  private Set<String> words;
+  // this file contains randomly generated addresses
+  private String fileNameToRead;
+  private List<String> lines;
 
-  public FileParser() {
-    words = new HashSet<>();
-    initializeWordDatabase();
+  public SimpleFileReader(String fileNameToRead) {
+    this.fileNameToRead = fileNameToRead;
+    lines = new ArrayList<>();
+    readInLines();
   }
 
-  private void initializeWordDatabase() {
+  private void readInLines() {
     File wordsFile =
-        new File(Objects.requireNonNull(getClass().getResource(WORD_DATABASE_FILENAME)).getFile());
+        new File(Objects.requireNonNull(getClass().getResource(fileNameToRead)).getFile());
     BufferedReader bufferedFileReader;
     try {
       bufferedFileReader = new BufferedReader(new FileReader(wordsFile, StandardCharsets.UTF_8));
     } catch (FileNotFoundException e) {
-      System.out.println("File " + WORD_DATABASE_FILENAME + " not found!");
+      System.out.println("File " + fileNameToRead + " not found!");
       return;
     } catch (IOException e) {
       System.out.println("Wrong encoding!");
@@ -43,7 +42,9 @@ public class FileParser {
     try {
       while (bufferedFileReader.ready()) {
         tmp = bufferedFileReader.readLine();
-        words.add(tmp);
+        lines.add(tmp);
+        // debug output:
+        System.out.println("Read line: " + tmp);
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -67,7 +68,7 @@ public class FileParser {
     }
   }
 
-  public Set<String> getWordSet() {
-    return words;
+  public List<String> getLineList() {
+    return lines;
   }
 }

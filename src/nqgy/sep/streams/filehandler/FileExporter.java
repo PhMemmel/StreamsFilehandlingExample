@@ -7,7 +7,7 @@ import java.io.PrintStream;
 import java.util.List;
 
 /** Class writing out a given List to a txt file. */
-public class FileDumper {
+public class FileExporter {
 
   private static final String EXPORT_FILENAME = "/outputfile.txt";
 
