@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,7 +30,7 @@ public class FileExporter {
     PrintStream printStream;
     try {
       outputStream = new FileOutputStream(dir + outputFileName);
-      printStream = new PrintStream(outputStream);
+      printStream = new PrintStream(outputStream, true, StandardCharsets.UTF_8);
 
       // for (String word : listToPrint) wouldn't neccessarily preserve order
       for (int i = 0; i < listToPrint.size(); i++) {
