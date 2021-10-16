@@ -12,8 +12,9 @@ public class Main {
   /**
    * Start method for this project.
    *
-   * @param args array of command line arguments: first: input csv file name, path relative to src/
-   *     directory second: output csv file name, will be in the root directory of the class files
+   * @param args array of command line arguments:<br>
+   *     first: input csv file name, path relative to src/ directory;<br>
+   *     second: output csv file name, will be in the root directory of the class files<br>
    *     third: columns to extract, example use "1,3,4" to extract the 2nd, 4th and 5th column,
    *     quotes must be used!
    */

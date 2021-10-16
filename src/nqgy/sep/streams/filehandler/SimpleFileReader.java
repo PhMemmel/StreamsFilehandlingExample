@@ -17,6 +17,12 @@ public class SimpleFileReader {
   private String fileNameToRead;
   private List<String> lines;
 
+  /**
+   * SimpleFileReader class.
+   *
+   * @param fileNameToRead the file name of the file to read in, the path has to be relative to the
+   *                       directory "src/"
+   */
   public SimpleFileReader(String fileNameToRead) {
     this.fileNameToRead = fileNameToRead;
     lines = new ArrayList<>();
