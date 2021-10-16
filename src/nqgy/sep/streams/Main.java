@@ -17,7 +17,7 @@ public class Main {
    */
   public static void main(String[] args) {
     Random random = new Random();
-    SimpleFileReader fileParser = new SimpleFileReader("/Adressen.csv");
+    SimpleFileReader fileParser = new SimpleFileReader("/AdressenWithQuotes.csv");
 
     List<String> addresses = fileParser.getLineList();
     List<String> outputList = new ArrayList<>();
