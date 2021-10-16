@@ -5,11 +5,16 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.Objects;
 
 /** Class writing out a given List to a txt file. */
 public class FileExporter {
 
-  private static final String EXPORT_FILENAME = "/outputfile.txt";
+  private final String outputFileName;
+
+  public FileExporter(String outputFileName) {
+    this.outputFileName = outputFileName;
+  }
 
   /**
    * Writes out the given list of strings to a file. Care: The output file will be in the root
@@ -19,11 +24,11 @@ public class FileExporter {
    */
   public void dumpToFile(List<String> listToPrint) {
 
-    String dir = getClass().getResource("/").getFile();
+    String dir = Objects.requireNonNull(getClass().getResource("/")).getFile();
     OutputStream outputStream;
     PrintStream printStream;
     try {
-      outputStream = new FileOutputStream(dir + EXPORT_FILENAME);
+      outputStream = new FileOutputStream(dir + outputFileName);
       printStream = new PrintStream(outputStream);
 
       // for (String word : listToPrint) wouldn't neccessarily preserve order
